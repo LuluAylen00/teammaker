@@ -3,7 +3,7 @@ exports.__esModule = true;
 var express = require("express");
 var path_1 = require("path");
 var app = express();
-var port = 3000;
+var port = process.env.PORT || 3000;
 console.log("Servidor corriendo en el puerto " + port);
 app.listen(port);
 var config = require('dotenv').config;
