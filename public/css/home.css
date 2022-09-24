@@ -1,0 +1,55 @@
+main form h3 {
+    width: 30vw;
+    text-align: center;
+}
+input[type="checkbox"] {
+    display: none;
+}
+form#assists {
+    display: flex;
+    flex-direction: column;
+}
+
+form section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 10px;
+}
+
+form section div {
+    position: relative;
+}
+
+.aff, .neg {
+    padding: 15px;
+    border-radius: 15px;
+    border: 1px solid;
+    opacity: 0;
+    color: snow;
+    font-weight: 600;
+    width: 15vw;
+    position: absolute;
+    left: 0;
+    top: -30px;
+    text-align: center;
+}
+.aff {
+    background-color: #1CAF9A;
+    border-color: #17a08c;
+}
+
+.neg {
+    background-color: #d9534f;
+    border-color: #d43f3a;
+    
+}
+
+input[type="checkbox"]:not(:checked) + div label.neg, input[type="checkbox"]:checked + div label.aff {
+    opacity: 1;
+}
+
+section {
+    display: flex;
+    align-items: center;
+}

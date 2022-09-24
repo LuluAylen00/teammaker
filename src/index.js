@@ -1,0 +1,20 @@
+"use strict";
+exports.__esModule = true;
+var express = require("express");
+var path_1 = require("path");
+var app = express();
+var port = 3000;
+console.log("Servidor corriendo en el puerto " + port);
+app.listen(port);
+var config = require('dotenv').config;
+config();
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+var publicPath = (0, path_1.resolve)(__dirname, '../public');
+var staticPath = express.static(publicPath);
+app.use(staticPath);
+app.set('views', (0, path_1.resolve)(__dirname, 'views'));
+app.set("view engine", "ejs");
+var indexRoutes_1 = require("./routes/indexRoutes");
+app.use(indexRoutes_1.indexRoutes);
+//# sourceMappingURL=index.js.map
