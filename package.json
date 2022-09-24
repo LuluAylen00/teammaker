@@ -2,7 +2,7 @@
   "name": "csv",
   "version": "1.0.0",
   "description": "Proyecto de prueba para convertir un .csv en json y enviarlo a una ruleta para dinámicas en el aula",
-  "main": "index.ts",
+  "main": "index.js",
   "scripts": {
     "tsc": "tsc -w",
     "test": "nodemon build/index.js -e js,mjs,json,ejs,css,ts",
