@@ -9,8 +9,10 @@
                     <option value="rift">Grieta</option>
                 </select>
                 <% for( let i = 0; i < data.list.length; i++ ) { %>
-                    <input type="checkbox" name="players" id="p<%= data.list[i].id %>" value="<%= data.list[i].id %>" checked>
-                    <label for="p<%= data.list[i].id %>"><%= data.list[i].name %></label>
+                    <% let player = data.list[i] %> 
+                    <% let teams = [...lista.teamOne, ...lista.teamTwo].map(p => p.name) %> 
+                    <input type="checkbox" name="players" id="p<%= player.id %>" value="<%= player.id %>" <%= teams.includes(player.name) ? "checked" : "" %>>
+                    <label for="p<%= player.id %>"><%= player.name %></label>
                 <% } %>
                 <%// console.log(acc) %> 
                 <button type="submit">Armar equipos</button>

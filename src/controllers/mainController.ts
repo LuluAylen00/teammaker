@@ -3,7 +3,7 @@ import {model} from "../models/mainModel";
 let mainController = {
     index: async (req, res) => {
         let data = model.list();
-        let acc= await model.findBySummonerName("Hide On UvvU")
+        let acc= await model.findBySummonerName("Hide On Walls")
         console.log(acc);
         if (!acc.includes("no se encuentra")) {
             console.log(model.totalMastery(acc));

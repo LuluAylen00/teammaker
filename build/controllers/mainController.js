@@ -45,7 +45,7 @@ var mainController = {
             switch (_a.label) {
                 case 0:
                     data = mainModel_1.model.list();
-                    return [4 /*yield*/, mainModel_1.model.findBySummonerName("Hide On UvvU")];
+                    return [4 /*yield*/, mainModel_1.model.findBySummonerName("Hide On Walls")];
                 case 1:
                     acc = _a.sent();
                     console.log(acc);
