@@ -3,6 +3,18 @@
     <%- include("./partials/head.ejs") %> 
     <body>
         <main>
+            <form action="/aram" method="post">
+                <select name="mode" id="mode">
+                    <option value="aram">Aram</option>
+                    <option value="rift">Grieta</option>
+                </select>
+                <% for( let i = 0; i < data.list.length; i++ ) { %>
+                    <input type="checkbox" name="players" id="p<%= data.list[i].id %>" value="<%= data.list[i].id %>" checked>
+                    <label for="p<%= data.list[i].id %>"><%= data.list[i].name %></label>
+                <% } %>
+                <%// console.log(acc) %> 
+                <button type="submit">Armar equipos</button>
+            </form>
         </main>
     </body>
 </html>

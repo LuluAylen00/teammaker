@@ -5,7 +5,7 @@ import {mainController} from '../controllers/mainController';
 
 app.get('/', mainController.index);
 
-app.get('/sort', mainController.sort);
+app.post('/aram', mainController.sort);
 
 
 export {app as indexRoutes}

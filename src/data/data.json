@@ -1,52 +1,72 @@
 [
     {
         "id": 0,
-        "name": "asd",
+        "name": "Literalmente un ward",
+        "invocador": "Centinela de visión",
+        "lineas": ["Soporte", "Jungla", "Superior", "Inferior", "Medio"],
         "lv": 1
     },
     {
         "id": 1,
-        "name": "fgh",
+        "name": "Dingi",
+        "invocador": "Hide On 912",
+        "lineas": ["Inferior", "Jungla", "Soporte", "Superior", "Medio"],
         "lv": 1
     },
     {
         "id": 2,
-        "name": "jkl",
-        "lv": 1
+        "name": "Sophie",
+        "invocador": "Hide On UvvU",
+        "lineas": ["Soporte", "Jungla", "Medio", "Superior", "Inferior"],
+        "lv": 2
     },
     {
         "id": 3,
-        "name": "qwe",
+        "name": "Mati",
+        "invocador": "X7REME13",
+        "lineas": ["Medio", "Soporte", "Inferior", "Superior", "Jungla"],
         "lv": 2
     },
     {
         "id": 4,
-        "name": "rty",
+        "name": "Shaco",
+        "invocador": "ll Pink Ward ll",
+        "lineas": ["Jungla", "Superior", "Soporte", "Medio", "Inferior"],
         "lv": 2
     },
     {
         "id": 5,
-        "name": "uio",
+        "name": "Furra",
+        "invocador": "Hide On Valinor",
+        "lineas": ["Inferior", "Medio", "Superior", "Soporte", "Jungla"],
         "lv": 2
     },
     {
         "id": 6,
-        "name": "zxc",
+        "name": "Tomi",
+        "invocador": "Hide on Jonia",
+        "lineas": ["Inferior", "Superior", "Medio", "Jungla", "Soporte"],
         "lv": 3
     },
     {
         "id": 7,
-        "name": "vbn",
+        "name": "Jorsuta",
+        "invocador": "Hide On Walls",
+        "lineas": ["Jungla", "Superior", "Medio", "Soporte", "Inferior"],
         "lv": 3
     },
     {
         "id": 8,
-        "name": "dsa",
+        "name": "Marroc",
+        "invocador": "Marro2144",
+        "lineas": ["Medio", "Superior", "Jungla", "Soporte", "Inferior"],
         "lv": 3
     },
     {
         "id": 9,
-        "name": "hgf",
-        "lv": 4
+        "name": "Nahue",
+        "invocador": "Hide On Kyojuro",
+        "lineas": ["Superior", "Jungla", "Medio", "Inferior", "Soporte"],
+        "lv": 3
     }
 ]
