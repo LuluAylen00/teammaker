@@ -40,21 +40,31 @@ exports.mainController = void 0;
 var mainModel_1 = require("../models/mainModel");
 var mainController = {
     index: function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-        var data, acc //= await model.findBySummonerName("Hide On Kyojuro")
-        ;
+        var data, acc;
         return __generator(this, function (_a) {
-            data = mainModel_1.model.list();
-            //console.log(acc);
-            /* if (!acc.includes("no se encuentra")) {
-                //console.log(model.totalMastery(acc));
-            } */
-            res.render('homepage', { data: data, acc: acc });
-            return [2 /*return*/];
+            switch (_a.label) {
+                case 0:
+                    data = mainModel_1.model.list();
+                    return [4 /*yield*/, mainModel_1.model.findBySummonerName("Hide On UvvU")];
+                case 1:
+                    acc = _a.sent();
+                    console.log(acc);
+                    if (!acc.includes("no se encuentra")) {
+                        console.log(mainModel_1.model.totalMastery(acc));
+                    }
+                    res.render('homepage', { data: data, acc: acc });
+                    return [2 /*return*/];
+            }
         });
     }); },
-    sort: function (req, res) {
-        mainModel_1.model.sorting(req.body.mode, req.body.players);
-        res.redirect('/');
+    sortAram: function (req, res) {
+        var data = mainModel_1.model.list();
+        var lista = mainModel_1.model.sorting(req.body.mode, req.body.players);
+        res.render('exampleAram', { data: data, lista: lista });
+    },
+    sortRift: function (req, res) {
+        var data = mainModel_1.model.list();
+        var lista = mainModel_1.model.sortRift(req.body.players);
     }
 };
 exports.mainController = mainController;

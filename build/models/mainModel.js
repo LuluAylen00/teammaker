@@ -159,6 +159,9 @@ var model = {
         }
         return array;
     },
+    orderByLength: function (arr1, arr2) {
+        return {};
+    },
     sorting: function (mode, players) {
         //console.log(players); [1, 2, 9]
         if (players && players.length > 0) {
@@ -173,14 +176,13 @@ var model = {
             var initLv_1 = 0;
             array.forEach(function (item) { return initLv_1 = initLv_1 + item.lv; });
             var totalLv = initLv_1;
-            var mult = 0;
-            switch (array.length) {
-                case 4:
-                    break;
-                default:
-                    break;
-            }
-            var minLv = (totalLv / 2) * 0.95;
+            // 23 -> 0.95
+            // 20 -> 0.9
+            // 10 -> 0.88
+            //
+            //
+            var minLv = totalLv * 0.9 / 2;
+            console.log(totalLv);
             console.log(minLv);
             var _loop_1 = function (i) {
                 var intentoActual = model.shuffle(array);
@@ -190,24 +192,59 @@ var model = {
                 var equipoUno = intentoActual.slice(0, intentoActual.length / 2);
                 var nivelEquipoUno = 0;
                 equipoUno.forEach(function (item) { return nivelEquipoUno = nivelEquipoUno + item.lv; });
-                /*
-                                if (i < 3) {
-                                    console.log();
-                                    
-                                    console.log("Intento "+ (i + 1));
-                                    console.log("nivelEquipoUno",nivelEquipoUno);
-                                    console.log(equipoUno.map(p => p.name));
-                                     
-                                    
-                                    console.log("nivelEquipoUno es mayor que minLv? "+ (nivelEquipoUno >= minLv));
-                                    
-                                    console.log("nivelEquipoDos",nivelEquipoDos);
-                                    console.log(equipoDos.map(p => p.name));
-                                    console.log("nivelEquipoDos es mayor que minLv? "+ (nivelEquipoDos >= minLv));
-                                    console.log();
-                                    
-                                }*/
-                if (nivelEquipoUno == 8 || nivelEquipoDos == 8) {
+                if (nivelEquipoUno >= minLv && nivelEquipoDos >= minLv) {
+                    if ((equipoUno.length >= equipoDos.length && nivelEquipoUno <= nivelEquipoDos) || (equipoDos.length >= equipoUno.length && nivelEquipoDos <= nivelEquipoUno)) {
+                        console.log("Coincidencia en el " + (i + 1) + " intento");
+                        console.log("nivelEquipoUno", nivelEquipoUno);
+                        console.log(equipoUno.map(function (p) { return p.name; }));
+                        console.log("nivelEquipoDos", nivelEquipoDos);
+                        console.log(equipoDos.map(function (p) { return p.name; }));
+                        return { value: finalObj = {
+                                teamOne: equipoUno,
+                                teamTwo: equipoDos
+                            } };
+                    }
+                }
+                if (i == 99998) {
+                    console.log("Error");
+                }
+            };
+            for (var i = 0; i < 99999; i++) {
+                var state_1 = _loop_1(i);
+                if (typeof state_1 === "object")
+                    return state_1.value;
+            }
+            return finalObj;
+        }
+        else {
+            return "No se han seleccionado jugadores";
+        }
+    },
+    sortRift: function (players) {
+        //console.log(players); [1, 2, 9]
+        if (players && players.length > 0) {
+            var array = players.map(function (player) {
+                return model.findJson(player);
+            });
+            // console.log(array);
+            var finalObj = {
+                teamOne: [],
+                teamTwo: []
+            };
+            var initLv_2 = 0;
+            array.forEach(function (item) { return initLv_2 = initLv_2 + item.lv; });
+            var totalLv = initLv_2;
+            var minLv = (totalLv / 2) * 0.95;
+            console.log(minLv);
+            var _loop_2 = function (i) {
+                var intentoActual = model.shuffle(array);
+                var equipoDos = intentoActual.slice(intentoActual.length / 2);
+                var nivelEquipoDos = 0;
+                equipoDos.forEach(function (item) { return nivelEquipoDos = nivelEquipoDos + item.lv; });
+                var equipoUno = intentoActual.slice(0, intentoActual.length / 2);
+                var nivelEquipoUno = 0;
+                equipoUno.forEach(function (item) { return nivelEquipoUno = nivelEquipoUno + item.lv; });
+                if (nivelEquipoUno >= minLv && nivelEquipoDos >= minLv) {
                     console.log("Coincidencia en el " + (i + 1) + " intento");
                     console.log("nivelEquipoUno", nivelEquipoUno);
                     console.log(equipoUno.map(function (p) { return p.name; }));
@@ -218,26 +255,14 @@ var model = {
                             teamTwo: equipoDos
                         } };
                 }
-                /*
-                                if (nivelEquipoUno >= minLv && nivelEquipoDos >= minLv) {
-                                    console.log("Coincidencia en el " + ( i + 1 ) + " intento");
-                                    console.log("nivelEquipoUno",nivelEquipoUno);
-                                    console.log(equipoUno.map(p => p.name));
-                                    console.log("nivelEquipoDos",nivelEquipoDos);
-                                    console.log(equipoDos.map(p => p.name));
-                                    return finalObj = {
-                                        teamOne: equipoUno,
-                                        teamTwo: equipoDos
-                                    }
-                                }*/
                 if (i == 99998) {
                     console.log("Error");
                 }
             };
             for (var i = 0; i < 99999; i++) {
-                var state_1 = _loop_1(i);
-                if (typeof state_1 === "object")
-                    return state_1.value;
+                var state_2 = _loop_2(i);
+                if (typeof state_2 === "object")
+                    return state_2.value;
             }
             return finalObj;
         }

@@ -110,6 +110,11 @@ const model = {
         }
         return array;
     },
+    orderByLength: (arr1, arr2) => {
+        return {
+             
+        }
+    },
     sorting: (mode, players) => {
         //console.log(players); [1, 2, 9]
         if (players && players.length > 0) {
@@ -125,15 +130,72 @@ const model = {
             let initLv = 0;
             array.forEach(item => initLv = initLv + item.lv);
             let totalLv = initLv;
-            let mult = 0
-            switch (array.length) {
-                case 4:
-                    
-                    break;
+
+            // 23 -> 0.95
+            // 20 -> 0.9
+            // 10 -> 0.88
+            //
+            //
+
+            let minLv = totalLv * 0.9 / 2;
+            console.log(totalLv);
+            console.log(minLv); 
+
             
-                default:
-                    break;
+            for (let i = 0; i < 99999; i++) {
+
+                let intentoActual = model.shuffle(array)
+                let equipoDos = intentoActual.slice(intentoActual.length / 2)
+                let nivelEquipoDos = 0;
+                equipoDos.forEach(item => nivelEquipoDos = nivelEquipoDos + item.lv);
+                
+                let equipoUno = intentoActual.slice(0, intentoActual.length / 2)
+                let nivelEquipoUno = 0;
+                equipoUno.forEach(item => nivelEquipoUno = nivelEquipoUno + item.lv);
+                
+                if (nivelEquipoUno >= minLv && nivelEquipoDos >= minLv) {
+
+                    if ((equipoUno.length >= equipoDos.length && nivelEquipoUno <= nivelEquipoDos ) || (equipoDos.length >= equipoUno.length && nivelEquipoDos <= nivelEquipoUno )) {
+                            console.log("Coincidencia en el " + ( i + 1 ) + " intento");
+                            console.log("nivelEquipoUno",nivelEquipoUno);
+                            console.log(equipoUno.map(p => p.name));
+                            console.log("nivelEquipoDos",nivelEquipoDos);
+                            console.log(equipoDos.map(p => p.name));
+                            return finalObj = {
+                            teamOne: equipoUno,
+                            teamTwo: equipoDos
+                        }
+                    }
+                }
+
+                if (i == 99998) {
+                    console.log("Error");
+                    
+                }
             }
+
+
+            return finalObj
+        } else {
+            return "No se han seleccionado jugadores"
+        }
+    },
+    sortRift: (players) => {
+        //console.log(players); [1, 2, 9]
+        if (players && players.length > 0) {
+            let array = players.map(player => {
+                return model.findJson(player)
+            })
+            // console.log(array);
+            let finalObj = {
+                teamOne: [],
+                teamTwo: []
+            }
+
+            let initLv = 0;
+            array.forEach(item => initLv = initLv + item.lv);
+            let totalLv = initLv;
+            
             let minLv = (totalLv / 2) * 0.95;
             console.log(minLv); 
 
@@ -146,37 +208,7 @@ const model = {
                 let equipoUno = intentoActual.slice(0, intentoActual.length / 2)
                 let nivelEquipoUno = 0;
                 equipoUno.forEach(item => nivelEquipoUno = nivelEquipoUno + item.lv);
-/*
-                if (i < 3) {
-                    console.log();
-                    
-                    console.log("Intento "+ (i + 1));
-                    console.log("nivelEquipoUno",nivelEquipoUno);
-                    console.log(equipoUno.map(p => p.name));
-                     
-                    
-                    console.log("nivelEquipoUno es mayor que minLv? "+ (nivelEquipoUno >= minLv));
-                    
-                    console.log("nivelEquipoDos",nivelEquipoDos);
-                    console.log(equipoDos.map(p => p.name));
-                    console.log("nivelEquipoDos es mayor que minLv? "+ (nivelEquipoDos >= minLv));
-                    console.log();
-                    
-                }*/
 
-                if(nivelEquipoUno == 8 || nivelEquipoDos == 8){
-                    console.log("Coincidencia en el " + ( i + 1 ) + " intento");
-                    console.log("nivelEquipoUno",nivelEquipoUno);
-                    console.log(equipoUno.map(p => p.name));
-                    console.log("nivelEquipoDos",nivelEquipoDos);
-                    console.log(equipoDos.map(p => p.name));
-                    return finalObj = {
-                        teamOne: equipoUno,
-                        teamTwo: equipoDos
-                    }
-                }
-
-/*
                 if (nivelEquipoUno >= minLv && nivelEquipoDos >= minLv) {
                     console.log("Coincidencia en el " + ( i + 1 ) + " intento");
                     console.log("nivelEquipoUno",nivelEquipoUno);
@@ -187,7 +219,7 @@ const model = {
                         teamOne: equipoUno,
                         teamTwo: equipoDos
                     }
-                }*/
+                }
 
                 if (i == 99998) {
                     console.log("Error");

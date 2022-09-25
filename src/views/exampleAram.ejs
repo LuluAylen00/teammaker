@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("./partials/head.ejs") %> 
+    <body>
+        <main>
+            <form action="/aram" method="post">
+                <select name="mode" id="mode">
+                    <option value="aram">Aram</option>
+                    <option value="rift">Grieta</option>
+                </select>
+                <% for( let i = 0; i < data.list.length; i++ ) { %>
+                    <input type="checkbox" name="players" id="p<%= data.list[i].id %>" value="<%= data.list[i].id %>" checked>
+                    <label for="p<%= data.list[i].id %>"><%= data.list[i].name %></label>
+                <% } %>
+                <%// console.log(acc) %> 
+                <button type="submit">Armar equipos</button>
+            </form>
+            <div>
+                <section>
+                    <span>
+                        <h2>Equipo 1</h2>
+                        <% for( let i = 0; i < lista.teamOne.length; i++ ) { %>
+                            <p><%= lista.teamOne[i].name %></p>
+                        <% } %>
+                    </span>
+                    <br>
+                    <span>
+                        <h2>Equipo 2</h2>
+                        <% for( let i = 0; i < lista.teamTwo.length; i++ ) { %>
+                            <p><%= lista.teamTwo[i].name %></p>
+                        <% } %>
+                    </span>
+                </section>
+                <section>
+                    
+                </section>
+            </div>
+            <% lista %> 
+
+        </main>
+    </body>
+</html>

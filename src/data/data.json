@@ -17,7 +17,7 @@
         "id": 2,
         "name": "Sophie",
         "invocador": "Hide On UvvU",
-        "lineas": ["Soporte", "Jungla", "Medio", "Superior", "Inferior"],
+        "lineas": ["Soporte", "Jungla", "Superior", "Inferior", "Medio"],
         "lv": 2
     },
     {
@@ -67,6 +67,6 @@
         "name": "Nahue",
         "invocador": "Hide On Kyojuro",
         "lineas": ["Superior", "Jungla", "Medio", "Inferior", "Soporte"],
-        "lv": 3
+        "lv": 4
     }
 ]
