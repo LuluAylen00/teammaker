@@ -5,7 +5,7 @@
         <%- include("./partials/header.ejs") %> 
         <% if (lista || data) { %>
             <main id="aram-main">
-                <form action="/aram" method="post">
+                <form action="/rift" method="post">
                     <% for( let i = 0; i < data.list.length; i++ ) { %>
                         <% let player = data.list[i] %> 
                         <% let teams = lista && lista.teamOne && lista.teamTwo ? [...lista.teamOne, ...lista.teamTwo].map(p => p.name) : null %> 
@@ -23,7 +23,7 @@
                             <h2>Equipo 1</h2>
                             <% for( let i = 0; i < lista.teamOne.length; i++ ) { %>
                                 <span>
-                                    <img src="/img/mid.png" alt="">
+                                    <img src="/img/one/<%= lista.teamOne[i].role %>.png" alt="">
                                     <p><%= lista.teamOne[i].name %></p>
                                 </span>
                             <% } %>
@@ -32,8 +32,8 @@
                             <h2>Equipo 2</h2>
                             <% for( let i = 0; i < lista.teamTwo.length; i++ ) { %>
                                 <span>
-                                    <img src="/img/mid.png" alt="">
                                     <p><%= lista.teamTwo[i].name %></p>
+                                    <img src="/img/two/<%= lista.teamTwo[i].role %>.png" alt="">
                                 </span>
                             <% } %>
                         </span>

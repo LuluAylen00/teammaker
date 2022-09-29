@@ -1,1 +1,68 @@
 @import url("./partials/normalize.css");
+
+header#topbar {
+    background-color: #062945;
+    display: flex;
+    justify-content: space-around;
+    padding: 25px;
+}
+
+header#topbar img {
+    width: 150px;
+}
+
+#aram-main {
+    display: flex;
+    padding-top: 25px;
+}
+
+#aram-main form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+}
+
+#aram-main form > * {
+    width: 80%;
+}
+
+#aram-main form fieldset {
+    display: flex;
+    flex-direction: row;
+    border: none;
+    margin: 10px;
+}
+
+#aram-main form fieldset input {
+    margin-right: 10px;
+}
+
+#aram-main #team-div {
+    display: flex;
+    justify-content: space-around;
+    width: 70%;
+}
+
+#aram-main #team-div .team-span {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+#aram-main #team-div .team-span span {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    font-size: 32px;
+    font-weight: 600;
+}
+
+#aram-main #team-div .team-span span img {
+    margin-right: 15px;
+}
+
+#team-two-span span {
+    justify-content: flex-end;
+}

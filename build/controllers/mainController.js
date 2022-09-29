@@ -40,31 +40,42 @@ exports.mainController = void 0;
 var mainModel_1 = require("../models/mainModel");
 var mainController = {
     index: function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-        var data, acc;
+        var data, lista;
         return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    data = mainModel_1.model.list();
-                    return [4 /*yield*/, mainModel_1.model.findBySummonerName("Hide On Walls")];
-                case 1:
-                    acc = _a.sent();
-                    console.log(acc);
-                    if (!acc.includes("no se encuentra")) {
-                        console.log(mainModel_1.model.totalMastery(acc));
-                    }
-                    res.render('homepage', { data: data, acc: acc });
-                    return [2 /*return*/];
-            }
+            data = mainModel_1.model.list();
+            lista = null;
+            /*let acc= await model.findBySummonerName("Hide On Walls")
+            console.log(acc);
+            if (!acc.includes("no se encuentra")) {
+                console.log(model.totalMastery(acc));
+            } */
+            res.render('exampleAram', { data: data, lista: lista });
+            return [2 /*return*/];
+        });
+    }); },
+    indexRift: function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+        var data, lista;
+        return __generator(this, function (_a) {
+            data = mainModel_1.model.list();
+            lista = null;
+            /*let acc= await model.findBySummonerName("Hide On Walls")
+            console.log(acc);
+            if (!acc.includes("no se encuentra")) {
+                console.log(model.totalMastery(acc));
+            } */
+            res.render('exampleRift', { data: data, lista: lista });
+            return [2 /*return*/];
         });
     }); },
     sortAram: function (req, res) {
         var data = mainModel_1.model.list();
-        var lista = mainModel_1.model.sorting(req.body.mode, req.body.players);
+        var lista = mainModel_1.model.sorting(req.body.players);
         res.render('exampleAram', { data: data, lista: lista });
     },
     sortRift: function (req, res) {
         var data = mainModel_1.model.list();
-        var lista = mainModel_1.model.sortRift(req.body.players);
+        var lista = mainModel_1.model.sortRift(req.body.mode, req.body.players);
+        res.render('exampleRift', { data: data, lista: lista });
     }
 };
 exports.mainController = mainController;

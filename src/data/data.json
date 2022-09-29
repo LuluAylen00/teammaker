@@ -1,72 +1,72 @@
 [
     {
         "id": 0,
-        "name": "Literalmente un ward",
-        "invocador": "Centinela de visión",
-        "lineas": ["Soporte", "Jungla", "Superior", "Inferior", "Medio"],
-        "lv": 1
+        "name": "Nico",
+        "invocador": "Nico40567",
+        "lineas": ["adc", "top", "jg", "sup", "mid"],
+        "lv": 2
     },
     {
         "id": 1,
         "name": "Dingi",
         "invocador": "Hide On 912",
-        "lineas": ["Inferior", "Jungla", "Soporte", "Superior", "Medio"],
+        "lineas": ["adc", "sup", "jg", "top", "mid"],
         "lv": 1
     },
     {
         "id": 2,
         "name": "Sophie",
         "invocador": "Hide On UvvU",
-        "lineas": ["Soporte", "Jungla", "Superior", "Inferior", "Medio"],
+        "lineas": ["sup", "jg", "top", "mid", "adc"],
         "lv": 2
     },
     {
         "id": 3,
         "name": "Mati",
         "invocador": "X7REME13",
-        "lineas": ["Medio", "Soporte", "Inferior", "Superior", "Jungla"],
+        "lineas": ["mid", "sup", "adc", "top", "jg"],
         "lv": 2
     },
     {
         "id": 4,
         "name": "Shaco",
         "invocador": "ll Pink Ward ll",
-        "lineas": ["Jungla", "Superior", "Soporte", "Medio", "Inferior"],
+        "lineas": ["jg", "top", "sup", "mid", "adc"],
         "lv": 2
     },
     {
         "id": 5,
         "name": "Furra",
         "invocador": "Hide On Valinor",
-        "lineas": ["Inferior", "Medio", "Superior", "Soporte", "Jungla"],
+        "lineas": ["adc", "mid", "top", "sup", "jg"],
         "lv": 2
     },
     {
         "id": 6,
         "name": "Tomi",
         "invocador": "Hide on Jonia",
-        "lineas": ["Inferior", "Superior", "Medio", "Jungla", "Soporte"],
+        "lineas": ["adc", "mid", "jg", "sup", "top"],
         "lv": 3
     },
     {
         "id": 7,
         "name": "Jorsuta",
         "invocador": "Hide On Walls",
-        "lineas": ["Jungla", "Superior", "Medio", "Soporte", "Inferior"],
+        "lineas": ["jg", "top", "mid", "sup", "adc"],
         "lv": 3
     },
     {
         "id": 8,
         "name": "Marroc",
         "invocador": "Marro2144",
-        "lineas": ["Medio", "Superior", "Jungla", "Soporte", "Inferior"],
+        "lineas": ["sup", "mid", "jg", "top", "adc"],
         "lv": 3
     },
     {
         "id": 9,
         "name": "Nahue",
         "invocador": "Hide On Kyojuro",
-        "lineas": ["Superior", "Jungla", "Medio", "Inferior", "Soporte"],
+        "lineas": ["top", "jg", "mid", "adc", "sup"],
         "lv": 4
     }
 ]

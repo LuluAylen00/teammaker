@@ -159,10 +159,151 @@ var model = {
         }
         return array;
     },
-    orderByLength: function (arr1, arr2) {
-        return {};
+    sortRift: function (mode, players) {
+        //console.log(players); [1, 2, 9]
+        if (players && players.length > 0) {
+            var array = players.map(function (player) {
+                return model.findJson(player);
+            });
+            // console.log(array);
+            var finalObj 
+            /*
+                        let initLv = 0;
+                        array.forEach(item => initLv = initLv + item.lv);
+                        let totalLv = initLv;
+            
+                        // 23 -> 0.95
+                        // 20 -> 0.9
+                        // 10 -> 0.88
+                        //
+                        //
+            
+                        let minLv = totalLv * 0.9 / 2;
+                        console.log(totalLv);
+                        console.log(minLv); */
+            = void 0;
+            /*
+                        let initLv = 0;
+                        array.forEach(item => initLv = initLv + item.lv);
+                        let totalLv = initLv;
+            
+                        // 23 -> 0.95
+                        // 20 -> 0.9
+                        // 10 -> 0.88
+                        //
+                        //
+            
+                        let minLv = totalLv * 0.9 / 2;
+                        console.log(totalLv);
+                        console.log(minLv); */
+            var levelCounter = function (team) {
+                var acc = 0;
+                team.forEach(function (p) {
+                    acc = acc + p.lv;
+                });
+                return acc;
+            };
+            for (var i = 0; i < 99999; i++) {
+                var shuffle = model.shuffle(array);
+                var thisTry = {
+                    teamOne: {
+                        roster: model.assignMod(shuffle.slice(0, shuffle.length / 2)),
+                        lv: 0
+                    },
+                    teamTwo: {
+                        roster: model.assignMod(shuffle.slice(shuffle.length / 2)),
+                        lv: 0
+                    }
+                };
+                thisTry.teamOne.lv = levelCounter(thisTry.teamOne.roster);
+                thisTry.teamTwo.lv = levelCounter(thisTry.teamTwo.roster);
+                if (i < 2) { /*
+                    console.log(thisTry.teamOne);
+                    console.log(thisTry.teamTwo);*/
+                    console.log(thisTry.teamOne.lv + thisTry.teamTwo.lv);
+                    console.log("thisTry.teamOne.lv", thisTry.teamOne.lv);
+                    console.log(thisTry.teamOne.roster.map(function (p) { return p.name; }));
+                    console.log("thisTry.teamTwo.lv", thisTry.teamTwo.lv);
+                    console.log(thisTry.teamTwo.roster.map(function (p) { return p.name; }));
+                }
+                var minLv = (thisTry.teamOne.lv + thisTry.teamTwo.lv) / 2 * 0.95;
+                if (thisTry.teamOne.lv >= minLv && thisTry.teamTwo.lv >= minLv) {
+                    if ((thisTry.teamOne.roster.length >= thisTry.teamTwo.roster.length && thisTry.teamOne.lv <= thisTry.teamTwo.lv) || (thisTry.teamTwo.roster.length >= thisTry.teamOne.roster.length && thisTry.teamTwo.lv <= thisTry.teamOne.lv)) {
+                        console.log("Coincidencia en el " + (i + 1) + " intento");
+                        console.log("thisTry.teamOne.lv", thisTry.teamOne.lv);
+                        console.log(thisTry.teamOne.roster.map(function (p) { return p.name; }));
+                        console.log("thisTry.teamTwo.lv", thisTry.teamTwo.lv);
+                        console.log(thisTry.teamTwo.roster.map(function (p) { return p.name; }));
+                        return finalObj = {
+                            teamOne: thisTry.teamOne.roster,
+                            teamTwo: thisTry.teamTwo.roster
+                        };
+                    }
+                }
+                if (i == 99998) {
+                    console.log("Error");
+                }
+            }
+            return finalObj;
+        }
+        else {
+            return "No se han seleccionado jugadores";
+        }
     },
-    sorting: function (mode, players) {
+    assignMod: function (team) {
+        var mod = function (assignedRole, playerRoles) {
+            // assignedRole = rol que le toca al jugador
+            // playerRoles = listado de roles por comodidad del jugador
+            var refObj = {
+                0: 1.4,
+                1: 1.2,
+                2: 1,
+                3: 0.8,
+                4: 0.6
+            };
+            //   0  |  1  |  2  |  3  |  4
+            //  1.4 | 1.2 |  1  | 0.8 | 0.6
+            var value = 1;
+            playerRoles.forEach(function (role, index) {
+                if (role == assignedRole) {
+                    value = refObj[index];
+                }
+            });
+            //console.log("previa",assignedRole,playerRoles);
+            return value;
+        };
+        var size = team.length;
+        var lanes = [];
+        switch (size) {
+            case 2:
+                lanes = ["top", "mid"];
+                break;
+            case 3:
+                lanes = ["top", "mid", "adc"];
+                break;
+            case 4:
+                lanes = ["top", "jg", "mid", "adc"];
+                break;
+            case 5:
+                lanes = ["top", "jg", "mid", "adc", "sup"];
+                break;
+            default:
+                lanes = ["mid"];
+                break;
+        }
+        var acc = [];
+        team.forEach(function (player, index) {
+            var newObj = {
+                name: player.name,
+                role: lanes[index],
+                lv: player.lv * mod(lanes[index], player.lineas),
+                summonner: player.invocador
+            };
+            acc.push(newObj);
+        });
+        return acc;
+    },
+    sorting: function (players) {
         //console.log(players); [1, 2, 9]
         if (players && players.length > 0) {
             var array = players.map(function (player) {
@@ -176,67 +317,9 @@ var model = {
             var initLv_1 = 0;
             array.forEach(function (item) { return initLv_1 = initLv_1 + item.lv; });
             var totalLv = initLv_1;
-            // 23 -> 0.95
-            // 20 -> 0.9
-            // 10 -> 0.88
-            //
-            //
-            var minLv = totalLv * 0.9 / 2;
-            console.log(totalLv);
+            var minLv = (totalLv / 2) * 1;
             console.log(minLv);
             var _loop_1 = function (i) {
-                var intentoActual = model.shuffle(array);
-                var equipoDos = intentoActual.slice(intentoActual.length / 2);
-                var nivelEquipoDos = 0;
-                equipoDos.forEach(function (item) { return nivelEquipoDos = nivelEquipoDos + item.lv; });
-                var equipoUno = intentoActual.slice(0, intentoActual.length / 2);
-                var nivelEquipoUno = 0;
-                equipoUno.forEach(function (item) { return nivelEquipoUno = nivelEquipoUno + item.lv; });
-                if (nivelEquipoUno >= minLv && nivelEquipoDos >= minLv) {
-                    if ((equipoUno.length >= equipoDos.length && nivelEquipoUno <= nivelEquipoDos) || (equipoDos.length >= equipoUno.length && nivelEquipoDos <= nivelEquipoUno)) {
-                        console.log("Coincidencia en el " + (i + 1) + " intento");
-                        console.log("nivelEquipoUno", nivelEquipoUno);
-                        console.log(equipoUno.map(function (p) { return p.name; }));
-                        console.log("nivelEquipoDos", nivelEquipoDos);
-                        console.log(equipoDos.map(function (p) { return p.name; }));
-                        return { value: finalObj = {
-                                teamOne: equipoUno,
-                                teamTwo: equipoDos
-                            } };
-                    }
-                }
-                if (i == 99998) {
-                    console.log("Error");
-                }
-            };
-            for (var i = 0; i < 99999; i++) {
-                var state_1 = _loop_1(i);
-                if (typeof state_1 === "object")
-                    return state_1.value;
-            }
-            return finalObj;
-        }
-        else {
-            return "No se han seleccionado jugadores";
-        }
-    },
-    sortRift: function (players) {
-        //console.log(players); [1, 2, 9]
-        if (players && players.length > 0) {
-            var array = players.map(function (player) {
-                return model.findJson(player);
-            });
-            // console.log(array);
-            var finalObj = {
-                teamOne: [],
-                teamTwo: []
-            };
-            var initLv_2 = 0;
-            array.forEach(function (item) { return initLv_2 = initLv_2 + item.lv; });
-            var totalLv = initLv_2;
-            var minLv = (totalLv / 2) * 0.95;
-            console.log(minLv);
-            var _loop_2 = function (i) {
                 var intentoActual = model.shuffle(array);
                 var equipoDos = intentoActual.slice(intentoActual.length / 2);
                 var nivelEquipoDos = 0;
@@ -260,9 +343,9 @@ var model = {
                 }
             };
             for (var i = 0; i < 99999; i++) {
-                var state_2 = _loop_2(i);
-                if (typeof state_2 === "object")
-                    return state_2.value;
+                var state_1 = _loop_1(i);
+                if (typeof state_1 === "object")
+                    return state_1.value;
             }
             return finalObj;
         }
